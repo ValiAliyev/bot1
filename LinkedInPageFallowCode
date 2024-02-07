@@ -1,0 +1,46 @@
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# List of international school websites
+school_websites = [
+    "http://www.abcprivateschool.com/",
+    "http://www.aldaracademies.com/",
+]
+
+# Initialize a WebDriver
+driver = webdriver.Chrome()
+
+for website in school_websites:
+    try:
+        # Open the website
+        driver.get(website)
+
+        # Check if the LinkedIn hyperlink is present
+        linkedin_link = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//a[contains(@href,'linkedin.com') or contains(@href,'linkedin')]"))
+        )
+
+        # Get the LinkedIn URL
+        linkedin_url = linkedin_link.get_attribute("href")
+
+        # If LinkedIn hyperlink found, print it and open in a new tab
+        print(f"LinkedIn hyperlink found for {website}: {linkedin_url}")
+        driver.execute_script("window.open('" + linkedin_url + "');")
+
+        # Switch to the newly opened tab
+        driver.switch_to.window(driver.window_handles[-1])
+
+    except NoSuchElementException:
+        print(f"No LinkedIn hyperlink found on {website}")
+
+    except TimeoutException:
+        print(f"Timeout: LinkedIn hyperlink not found on {website}")
+
+    except Exception as e:
+        print(f"An error occurred while processing {website}: {str(e)}")
+
+# Close the browser
+driver.quit()
