@@ -1,0 +1,45 @@
+import webbrowser
+import keyboard
+
+def open_websites(websites):
+    for site in websites:
+        webbrowser.open(site)
+        print(f"Press 'Ctrl + W' to move to the next website.")
+        keyboard.wait("ctrl+w")
+
+# Example usage:
+websites_to_check = [
+    "http://www.abcprivateschool.com/",
+    "http://www.aldaracademies.com/",
+    "http://www.brightoncollege.ae/",
+    "http://www.britishcouncil.org/me-uae.htm",
+    "http://www.emiratesprivateschool.com/",
+    "http://www.iscabudhabi.sabis.net/",
+    "http://www.merryland.org/",
+    "http://www.alainjuniors.com/index.php",
+    "http://www.brightoncollegealain.ae/",
+    "http://www.pacembs.com/",
+    "http://www.arabunityschool.com/",
+    "https://www.brightoncollegedubai.ae/",
+    "http://www.britishcouncil.ae/",
+    "http://icedubai.org/",
+    "http://www.dubaigem.org/",
+    "http://www.horizonintlschool.com/",
+    "https://www.jess.sch.ae/",
+    "https://www.risdubai.com/contact/location/",
+    "http://www.southview.ae/",
+    "http://www.sunmarkedubai.com/",
+    "http://www.iscdubai.sabis.net/",
+    "http://www.iscs.sch.ae/",
+    "http://www.sheffield-school.com/",
+    "http://www.ourown.school/",
+    "http://www.rosaryschoolshj.com/",
+    "http://www.harvestschool.ae/",
+    "http://www.ambps.com/",
+    "http://www.rosarysh.com/",
+    "http://www.sharjahpublicschool.ae/",
+    "http://www.srsdubai.ae/",
+    "http://www.ssi.ae/"
+]
+
+open_websites(websites_to_check)
