@@ -1,0 +1,28 @@
+import pandas as pd
+
+# Load the Excel file
+df = pd.read_excel("SchoolEmails.xlsx")
+
+# Define a function to transform the email lists
+def transform_email_list(email_list):
+    # Remove brackets
+    email_list = email_list.strip(' ')
+    email_list = email_list.strip('[')
+    email_list = email_list.strip(']')
+    email_list = email_list.strip('"')
+    email_list = email_list.strip("'")
+    # Replace commas with semicolons
+    email_list = email_list.replace("','", ';')
+    email_list = email_list.replace("', '", ';')
+    email_list = email_list.replace("' ,'", ';')
+    email_list = email_list.replace('","', ';')
+    email_list = email_list.replace('", "', ';')
+    email_list = email_list.replace('" ,"', ';')
+
+    return email_list
+
+# Apply the transformation function to the second column
+df['Emails'] = df['Emails'].apply(transform_email_list)
+
+# Save the updated DataFrame to a new Excel file
+df.to_excel("output_file.xlsx", index=False)
